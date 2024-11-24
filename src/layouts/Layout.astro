@@ -1,0 +1,100 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import AudioPlayer from '../components/AudioPlayer';
+import Footer from '../components/Footer';
+import ErrorBoundary from '../components/ErrorBoundary';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Ifeoma's Garden of Memories - Birthday Celebration" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body class="min-h-screen bg-gradient-to-b from-royal-light to-royal flex flex-col">
+    <div class="stars"></div>
+    <div class="flex-grow">
+      <ErrorBoundary client:load>
+        <slot />
+      </ErrorBoundary>
+    </div>
+    <Footer client:idle />
+    <AudioPlayer client:idle />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --royal-blue: #1e3799;
+    --coral: #ff7f50;
+    --gold: #ffd700;
+  }
+  
+  html {
+    font-family: 'Poppins', system-ui, sans-serif;
+    background: var(--royal-blue);
+    scroll-behavior: smooth;
+  }
+
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold) rgba(255, 255, 255, 0.1);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--gold);
+    border-radius: 3px;
+  }
+
+  .stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: 
+      radial-gradient(2px 2px at 20px 30px, #fff, rgba(0,0,0,0)),
+      radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+      radial-gradient(2px 2px at 50px 160px, #fff, rgba(0,0,0,0)),
+      radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
+      radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: stars 4s linear infinite;
+    opacity: 0.3;
+    will-change: transform;
+  }
+
+  @keyframes stars {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-200px); }
+  }
+
+  img {
+    content-visibility: auto;
+  }
+</style>

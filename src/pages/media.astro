@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation';
+import MediaPlaylists from '../components/MediaPlaylists';
+import WishForm from '../components/WishForm';
+import InspirationGallery from '../components/InspirationGallery';
+
+---
+
+<Layout title="Media Sanctuary - Ifeoma's Garden">
+  <Navigation client:load />
+  
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl md:text-5xl font-cursive text-center text-white mb-8">
+      Media Sanctuary
+    </h1>
+    
+    <MediaPlaylists client:load />
+    <WishForm client:load />
+    <InspirationGallery client:load />
+  </main>
+</Layout>

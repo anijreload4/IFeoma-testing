@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation';
+import PhotoCarousel from '../../components/PhotoCarousel';
+import CelebrantIntro from '../../components/CelebrantIntro';
+import BibleVerses from '../../components/BibleVerses';
+import FamilyFrames from '../../components/FamilyFrames';
+
+---
+
+<Layout title="The Celebrant's Garden">
+  <Navigation client:load />
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl md:text-6xl font-cursive text-center text-white mb-8">
+      Welcome to Ifeoma's Garden of Memories
+    </h1>
+    
+    <PhotoCarousel client:load />
+    <CelebrantIntro client:load />
+    <BibleVerses client:load />
+    <FamilyFrames client:load />
+  </main>
+</Layout>
